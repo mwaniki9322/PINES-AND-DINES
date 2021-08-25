@@ -19,6 +19,11 @@ class User(db.Model,UserMixin):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
+    reviews = db.relationship('review', backref='user', lazy='dynamic')
+    comment = db.relationship('Comment', backref='user', lazy='dynamic')
+    upvote = db.relationship('Upvote',backref='user',lazy='dynamic')
+    downvote = db.relationship('Downvote',backref='user',lazy='dynamic')
+    
 
     @property
     def password(self):
@@ -82,7 +87,7 @@ class Upvote(db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    pitch_id = db.Column(db.Integer,db.ForeignKey('review.id'))
+    pitch_id = db.Column(db.Integer,db.ForeignKey('reviews.id'))
     
 
     def save(self):
@@ -91,19 +96,19 @@ class Upvote(db.Model):
 
     @classmethod
     def get_upvotes(cls,id):
-        upvote = Upvote.query.filter_by(review_id=id).all()
+        upvote = Upvote.query.filter_by(reviews_id=id).all()
         return upvote
 
 
     def __repr__(self):
-        return f'{self.user_id}:{self.review_id}'
+        return f'{self.user_id}:{self.reviews_id}'
         
 class Downvote(db.Model):
     __tablename__ = 'downvotes'
 
     id = db.Column(db.Integer,primary_key=True)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    pitch_id = db.Column(db.Integer,db.ForeignKey('review.id'))
+    reviews_id = db.Column(db.Integer,db.ForeignKey('review.id'))
     
 
     def save(self):
@@ -116,6 +121,7 @@ class Downvote(db.Model):
 
     def __repr__(self):
         return f'{self.user_id}:{self.review_id}'
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
