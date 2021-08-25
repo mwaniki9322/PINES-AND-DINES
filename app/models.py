@@ -85,7 +85,7 @@ class Upvote(db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
+    review_id = db.Column(db.Integer,db.ForeignKey('reviews.id'))
     
 
     def save(self):
@@ -94,19 +94,19 @@ class Upvote(db.Model):
 
     @classmethod
     def get_upvotes(cls,id):
-        upvote = Upvote.query.filter_by(pitch_id=id).all()
+        upvote = Upvote.query.filter_by(review_id=id).all()
         return upvote
 
 
     def __repr__(self):
-        return f'{self.user_id}:{self.pitch_id}'
+        return f'{self.user_id}:{self.review_id}'
         
 class Downvote(db.Model):
     __tablename__ = 'downvotes'
 
     id = db.Column(db.Integer,primary_key=True)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
+    reviews_id = db.Column(db.Integer,db.ForeignKey('reviews.id'))
     
 
     def save(self):
@@ -114,11 +114,11 @@ class Downvote(db.Model):
         db.session.commit()
     @classmethod
     def get_downvotes(cls,id):
-        downvote = Downvote.query.filter_by(pitch_id=id).all()
+        downvote = Downvote.query.filter_by(review_id=id).all()
         return downvote
 
     def __repr__(self):
-        return f'{self.user_id}:{self.pitch_id}'
+        return f'{self.user_id}:{self.review_id}'
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
