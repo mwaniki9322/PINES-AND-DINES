@@ -1,18 +1,21 @@
 from flask import render_template,abort,redirect,url_for
 from . import main
 from flask_login import login_required
-from ..models import User
+from ..models import User,Review,Comment,Upvote,Downvote
 from .forms import UpdateProfile
 from .. import db
 
 
 
 @main.route('/')
+@login_required
 def index():
-    '''
-    view function for index page
-    '''
-    return render_template('index.html')
+    pitches = Review.query.all()
+    job = Review.query.filter_by(category = 'Clubs').all() 
+    event = Review.query.filter_by(category = '').all()
+    advertisement = Review.query.filter_by(category = 'Advertisement').all()
+    return render_template('index.html', job = job,event = event, pitches = pitches,advertisement= advertisement)
+
 
 
 @main.route('/user/<uname>')
