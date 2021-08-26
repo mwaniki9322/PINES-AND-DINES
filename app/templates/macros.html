@@ -1,36 +1,19 @@
-{% macro display(sandwish) %}
-<div class="container-fluid">
-<div class="row">
-{% if sandwish %}
-{% for category in sandwish %}
-<div class="col-md-4" >
-<div class="thumbnail" id="carded">
-<h5 class="card-header">{{category.title}}</h5>
-<div class="card-body">
-    <p>{{category.post}}</p>
-    <p class="text-center"> Category: {{category.category}}</p>
-    <footer class="blockquote-footer text-center" > Posted by: {{category.user.username}}</footer>
-<div><span class="foot" >{{category.comment.count()}} Comments</span> 
-    <span class="foot" > <a href="{{url_for('main.like',id = category.id)}}">Like:{{category.upvote.count()}}</span>
-    
-    
-    <span class="foot"> <a href="{{url_for('main.dislike',id = category.id)}}">Dislike:{{category.downvote.count()}}</a></span>
-</div>
-
-<a href="{{url_for('main.comment',review_id = category.id)}}" class="btn btn-info btn-sm"> Comment</a>
+{%extends 'bootstrap/base.html'%}
+{%macro display(review)%}
+<div class="container">
+  <div class="row">
+      {%for view in review%}
+      <div class="col-md-4">
+      <div class="card mb-3">
+        <img class="card-img-top" src="../static/ALI-BARBOURS-CAVE-RESTAURANT.jpg" alt="Card image cap" width="330px">
+        <div class="card-body">
+          <h5 class="card-title">{{view.title}}</h5>
+          <p class="card-text">{{view.post}}</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+  </div>
 </div>
 </div>
-</div>
-
-{% endfor %}
-{% else %}
-<div class="card w-90 mb-3">
-<div class="card-body">
-
-<p class="card-title">Category Has 0 posts</p>
-</div>
-</div>
-{% endif %}
-</div>
-</div>
-{% endmacro %}
+{%endfor%}
+{%endmacro%}

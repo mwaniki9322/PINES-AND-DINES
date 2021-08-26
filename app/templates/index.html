@@ -18,8 +18,88 @@ Our mission is striving to give our audience the best experience in all matters,
 		</div>
 </header>
 
+<div class="container" id="t">
+  <h2 id="t" style="font-weight: bolder;">BLOGS</h2>
+<div class="row">
+  <div class="col-md-4">
+<div class="card">
+  <div class="card-title">
+    <div class="card-body">
       <div  class="container tab-pane active" id="all"><br>
         {{ macro.display(reviews) }}
     </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
   
+              <style>
+  *{padding: 0; margin: 0; box-sizing: border-box;}
+body{height: 900px;}
+header {
+	background-image: url('../static/ALI-BARBOURS-CAVE-RESTAURANT.jpg');
+	text-align: center;
+	width: 100%;
+	height: auto;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	overflow: hidden;
+	
+}
+#container,h2{
+  text-align: center;
+}
+header .overlay{
+	width: 100%;
+	height: 50%;
+	padding: 50px;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #333;
+  
+	
+}
+
+h1 {
+	font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-size: 80px;
+	margin-bottom: 30px;
+}
+
+h3, p {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	margin-bottom: 30px;
+}
+
+button {
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 50px;
+	color: #333;
+	background: #fff;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+}
+button:hover{
+	cursor: pointer;
+}
+a{
+          color: white;
+          float: right;
+          padding-left: 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          font-size: 20px;
+          margin-top: 30px;
+          margin-right: 20px;
+          
+      }
+      a:hover{
+          text-decoration: underline;
+          color: white;
+      }
+</style>
+
 {% endblock%}

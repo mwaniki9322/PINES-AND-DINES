@@ -27,8 +27,10 @@ def new_review():
         title = form.title.data
         post = form.post.data
         category = form.category.data
+        location=form.location.data
+        link=form.link.data
         user_id = current_user
-        new_review_object = Review(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
+        new_review_object = Review(post=post,user_id=current_user._get_current_object().id,category=category,title=title,location=location,link=link)
         new_review_object.save_p()
         return redirect(url_for('main.index'))
         
