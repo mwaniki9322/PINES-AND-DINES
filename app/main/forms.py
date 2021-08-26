@@ -10,7 +10,10 @@ class UpdateProfile(FlaskForm):
 class ReviewForm(FlaskForm):
     title = StringField('Title', validators=[Required()])
     category = SelectField('Category', choices=[('Clubs','Clubs'),('Hotel','Hotel'),('Restaurant','Restaurant')],validators=[Required()])
-    post = TextAreaField('Your Pitch', validators=[Required()])
+    post = TextAreaField('Description', validators=[Required()])
+    location=StringField('Location',validators=[Required()])
+    link=StringField('Link',validators=[Required()])
+
     submit = SubmitField('Review')
 
 class CommentForm(FlaskForm):

@@ -44,6 +44,8 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(255),nullable = False)
     post = db.Column(db.Text(), nullable = False)
+    location=db.Column(db.String(255))
+    link=db.Column(db.String(255))
     comment = db.relationship('Comment',backref='reviews',lazy='dynamic')
     upvote = db.relationship('Upvote',backref='reviews',lazy='dynamic')
     downvote = db.relationship('Downvote',backref='reviews',lazy='dynamic')
