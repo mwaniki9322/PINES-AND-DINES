@@ -1,45 +1,44 @@
-{% extends 'base.html'%}
+{% extends 'bootstrap/base.html'%}
 {% import 'macros.html' as macro %}
 
 {% block content %}
-    
+    <ul class="navbar" style="background-color: #1E3163;height: 90px;">
+  {% if current_user.is_authenticated %}
+  <a href="{{url_for('main.profile',name=current_user.username)}}">Profile</a>
+  <a href="{{url_for('auth.logout')}}">Sign out</a></li>
+  {% else %}
+  <a href="{{url_for('auth.login')}}">Sign in</a>
+   {%endif%}
+   <a href="">Quotes</a>
+
+   <a href="/create_new">Add Review</a>
+
+   <a href="{{url_for('main.index')}}">Home</a>
+
 
 <header>
 	<div class="overlay">
-<h1>Simply The Best</h1>
-<h3>KENYAN POWER HOUSE</h3>
-<h2>Life of the Party</h2>
-<p>Kenyan Powerhouse is a Festival Culture Blog based in Nairobi, Kenya. The brand was established in the year 2019 by Zakaria Njenga Kinyanjui with the help of a trusted group of family and close friends as a result of live performance enthusiasm.
-
-Our mission is striving to give our audience the best experience in all matters, ‘Live Performance‘. Our vision is to showcase different festival cultures from The Motherland, Africa, and the rest of the World by 2040</p>
+<h1>PINES AND DINES</h1>
+<h2>The Guide To Good Life</h2>
+<p> PINES AND DINES has been a trusted guide to The Good Life. Many readers turn to PINES AND DINES expert reviews on dining, drinks, hotels.</p>
 	<br>
 
-	<button href="">BLOGS</button>
+	<button href="">REVIEWS</button>
 		</div>
 </header>
 
-<div class="container" id="t">
-  <h2 id="t" style="font-weight: bolder;">BLOGS</h2>
-<div class="row">
-  <div class="col-md-4">
-<div class="card">
-  <div class="card-title">
-    <div class="card-body">
-      <div  class="container tab-pane active" id="all"><br>
+
+      <div  class="container" id="con-1"><br>
+        <h4>Reviews</h4>
         {{ macro.display(reviews) }}
     </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
+  
   
               <style>
   *{padding: 0; margin: 0; box-sizing: border-box;}
 body{height: 900px;}
 header {
-	background-image: url('../static/ALI-BARBOURS-CAVE-RESTAURANT.jpg');
+	background-image: url('../static/pexels-recal-media-60217.jpg');
 	text-align: center;
 	width: 100%;
 	height: auto;
@@ -52,6 +51,9 @@ header {
 #container,h2{
   text-align: center;
 }
+#con-1,h4{
+  text-align: center;
+} 
 header .overlay{
 	width: 100%;
 	height: 50%;
