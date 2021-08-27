@@ -5,10 +5,12 @@
       <div class="col-sm-4">
       <div class="card mb-3">
           <h5 class="card-title" style="font-weight: bolder;text-transform: uppercase; font-size: 20px;">{{view.title}}</h5>
-          <p class="card-text">{{view.post}}</p>
-          <p class="card-text">{{view.category}}</p>
-          <h6>{{view.location}}</h6><br>
+          <p class="card-text" style="font-size: larger;">{{view.post}}</p>
+          <p class="card-text" style="font-size: large;">Category:<span style="font-weight: bolder;">{{view.category}}</span></p>
+          <h6 style="font-size: 15px;">Location:<span style="font-weight: bolder;">{{view.location}}</span></h6><br>
+          <p>Posted by:<span style="font-weight: bolder;"> {{view.user.username}}</span></p>
           <a href="{{view.link}}" style="color: blue;">visit website</a>
+          <span>{{view.comment.count()}} Comments</span>
 
           <a href="{{url_for('main.comment',review_id = view.id)}}" class="btn btn-info btn-sm" style="background-color: #B61919 ;margin-right: 131px;"> Comment</a>
       </div>
